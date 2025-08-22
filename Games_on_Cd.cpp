@@ -55,39 +55,41 @@ int main()
     string s;
     cin >> s;
     s = s + s;
-
-    map<string, int> mp;
     int g;
     cin >> g;
-    vector<string> ans;
-    set<string> st;
-    while (g--)
+    vector<int> ans;
+    map<string, int> st;
+    int i = 0;
+
+    for (int i = 1; i <= g; i++)
     {
         string q;
         cin >> q;
-        st.insert(q);
+        st[q] = i;
     }
 
+    map<string, int> mp;
     for (int j = 0; j < k; j++)
     {
-        set<string> st1 = st;
-        bool ok = false;
+        map<string, int> st1 = st;
+
         for (int i = j; i < length + j; i += k)
         {
             string t = s.substr(i, k);
-            if (st1.find(t) != st1.end())
-            {
-                ans.push_back(t);
+            if(st1[t]){
+                ans.push_back(st1[t]);
                 st1.erase(t);
             }
         }
-        if (ans.size() == n)
+
+        if ((int)ans.size() == n)
         {
             break;
         }
         ans.clear();
     }
-    if (ans.size() == n)
+
+    if ((int)ans.size() == n)
     {
         cout << "YES\n";
         for (auto it : ans)
