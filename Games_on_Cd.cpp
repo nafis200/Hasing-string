@@ -162,7 +162,7 @@ int main()
         cin >> q;
         st[string_hash(q)] = i;
     }
-
+// 
     for (int j = 0; j < k; j++)
     {
         map<pair<int, int>, int> st1 = st;
