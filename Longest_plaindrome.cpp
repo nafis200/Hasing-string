@@ -16,10 +16,25 @@ string f(int i, int j){
     if(vis[i][j]){
         return s[i][j];
     }
-    string ans = f(i + 1, j);
-    ans = f(i, j - 1);
+    string ans = "";
+    string left = f(i + 1, j);
+    string right = f(i, j - 1);
+
+    if(left.size() > right.size()){
+        ans = left;
+    }
+    else if(left.size() < right.size()){
+        ans = right;
+    }
+    else{
+        ans = max(left,right);
+    }
+
     if(s1[i] == s1[j]){
-        ans = s1[i] + f(i + 1, j - 1) + s1[j];
+        string temp = s1[i] + f(i + 1, j - 1) + s1[j];
+        if(temp.size() > ans.size()){
+            ans = temp;
+        }
     }
     vis[i][j] = true;
     return s[i][j] =  ans;
